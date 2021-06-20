@@ -6,6 +6,7 @@ import com.net.demo33.details.Details;
 import com.net.demo33.json.ExchangeConvertor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class ExchangeController {
 
     @GetMapping("convert")
     @ResponseStatus(HttpStatus.OK)
-    public Details convert(@RequestParam String from, @RequestParam String to, @RequestParam int amount) throws JsonProcessingException {
+    public Details convert(@RequestParam String from, @RequestParam String to, @RequestParam int amount){
 
         ExchangeConvertor exchangeConvertor = restTemplate.getForObject(URL, ExchangeConvertor.class);
         double TO = (double) exchangeConvertor.getConversion_rates().get(to);
