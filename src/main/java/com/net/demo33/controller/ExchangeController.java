@@ -24,12 +24,12 @@ public class ExchangeController {
 
     private static DecimalFormat df = new DecimalFormat("0.00");
     private final RestTemplate restTemplate;
-    private static final String URL = "https://v6.exchangerate-api.com/v6/414db79b430e4bd3915c42c0/latest/USD";
+    private static final String URL = "https://v6.exchangerate-api.com/v6/6845abc2363b7dc5ff117844/latest/USD";
 
-
+    @Cacheable("exchange_cache")
     @GetMapping("convert")
     @ResponseStatus(HttpStatus.OK)
-    public Details convert(@RequestParam String from, @RequestParam String to, @RequestParam int amount){
+    public Details convert(@RequestParam String from, @RequestParam String to, @RequestParam int amount) {
 
         ExchangeConvertor exchangeConvertor = restTemplate.getForObject(URL, ExchangeConvertor.class);
         double TO = (double) exchangeConvertor.getConversion_rates().get(to);
