@@ -24,9 +24,9 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ExchangeController {
 
-    private static DecimalFormat df = new DecimalFormat("0.00");
+    private final DecimalFormat df;
     private final RestTemplate restTemplate;
-    private static final String URL = "https://v6.exchangerate-api.com/v6/6845abc2363b7dc5ff117844/latest/USD";
+    private final String URL = "https://v6.exchangerate-api.com/v6/6845abc2363b7dc5ff117844/latest/USD";
 
     @Cacheable("exchange_cache")
     @GetMapping("convert")
