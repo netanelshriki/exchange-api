@@ -13,6 +13,5 @@ public class DecimalConfig {
     @Bean
     public DecimalFormat decimalFormat(){
         return new DecimalFormat("0.00");
-
     }
 }
