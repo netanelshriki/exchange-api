@@ -6,9 +6,11 @@ import com.net.demo33.details.Details;
 import com.net.demo33.json.ExchangeConvertor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,6 +38,12 @@ public class ExchangeController {
 
         return new Details(from.toString(), to.toString(), amount, df.format(TO * amount));
 
+    }
+
+    //@Scheduled(fixedDelay = 1000*60*60*24) --> for cleaning cache each 24 hors
+    @CacheEvict(allEntries = true, cacheNames = {"exchange_cache"})
+    @Scheduled(fixedDelay = 10000)
+    public void cacheEvict() {
     }
 
 }
