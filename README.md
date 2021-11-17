@@ -1,4 +1,4 @@
-# exchange-api with caching
+<!-- # exchange-api with caching
 ## using RestTemplate and spring caching
 
 first you have to register for [exchange rate API](https://www.exchangerate-api.com/)
@@ -21,3 +21,4 @@ as you click on this link we'll get all th einformation in a JSON format:
 
 as we see, we don't need all of this information which just indicate us that the proccess succeded and addintional info .
 we want only the last line: **"conversion_rates":{"USD":1...**
+ -->
