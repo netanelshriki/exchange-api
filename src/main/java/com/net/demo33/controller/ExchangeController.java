@@ -4,15 +4,14 @@ import com.net.demo33.pojo.Details;
 import com.net.demo33.pojo.ExchangeConvertor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.DecimalFormat;
+
 
 
 @RestController
@@ -25,7 +24,7 @@ public class ExchangeController {
     @Value("${exchange.url}")
     private String URL;
 
-    @Cacheable("exchange_cache")
+    @Cacheable(value = "exchange_cache")
     @GetMapping("convert")
     @ResponseStatus(HttpStatus.OK)
     public Details convert(@RequestParam String from, @RequestParam String to, @RequestParam int amount) {
@@ -43,5 +42,8 @@ public class ExchangeController {
 //    @Scheduled(fixedDelay = 10000)
 //    public void cacheEvict() {
 //    }
+
+
+
 
 }
